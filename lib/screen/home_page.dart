@@ -13,19 +13,15 @@ class _homescreenState extends State<homescreen> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        
       ),
-      drawer: Drawer(
-
-      ),
+      drawer: Drawer(),
       body: Column(
         children: [
+           Text("Our"),
 
-        Container(
-            child: Text(
-                "Our"
-            ),),
-        Text("Products")
+          Text(
+            "Products",
+          ),
         ],
       ),
     );
