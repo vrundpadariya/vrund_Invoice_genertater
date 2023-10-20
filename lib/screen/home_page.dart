@@ -59,6 +59,7 @@ class _homescreenState extends State<homescreen> {
                         color: Colors.grey.withOpacity(0.9),
                       ),
                       child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           SizedBox(
                             height: 10,
@@ -77,7 +78,25 @@ class _homescreenState extends State<homescreen> {
                 child: Icon(Icons.tune_rounded),
               ),
             ],
-          )
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: 320,
+                width: 180,
+                color: Colors.red,
+                child: Column(
+                  children: [
+                    Expanded(
+                      flex: 2,
+                      child: Container(),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ],
       ),
       bottomNavigationBar: CustomNavigationBar(
