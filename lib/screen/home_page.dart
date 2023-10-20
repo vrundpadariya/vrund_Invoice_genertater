@@ -83,18 +83,10 @@ class _homescreenState extends State<homescreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: 320,
-                width: 180,
-                color: Colors.red,
-                child: Column(
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Container(),
-                    ),
-                  ],
-                ),
-              ),
+                  height: 320,
+                  width: 180,
+                  color: Colors.red,
+                  child: Container()),
             ],
           ),
         ],
@@ -145,3 +137,47 @@ class _homescreenState extends State<homescreen> {
     );
   }
 }
+//Container(
+//                 height: 320,
+//                 width: 180,
+//                 color: Colors.red,
+//                 child: Column(
+//                   children: [
+//                     Expanded(
+//                       flex: 2,
+//                       child: Container(),
+//                     ),
+//                     Expanded(
+//                       child: Container(
+//                         alignment: Alignment.center,
+//                         color: Colors.blue,
+//                         child: const Column(
+//                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+//                           children: [
+//                             Text(
+//                               "Dusk",
+//                               style: TextStyle(
+//                                 fontSize: 20,
+//                                 fontWeight: FontWeight.bold,
+//                               ),
+//                             ),
+//                             Text(
+//                               "Treanding",
+//                               style: TextStyle(
+//                                 fontSize: 15,
+//                                 color: Colors.orangeAccent,
+//                               ),
+//                             ),
+//                             Text(
+//                               "Rs.999",
+//                               style: TextStyle(
+//                                 fontSize: 22,
+//                               ),
+//                             )
+//                           ],
+//                         ),
+//                       ),
+//                     ),
+//                   ],
+//                 ),
+//               ),
