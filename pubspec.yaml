@@ -39,6 +39,7 @@ dependencies:
   custom_navigation_bar: ^0.8.2
   pdf: ^3.10.4
   printing: ^5.11.0
+  custom_rating_bar: ^2.0.5
 
 dev_dependencies:
   flutter_test:

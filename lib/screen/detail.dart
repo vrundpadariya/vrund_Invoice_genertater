@@ -11,6 +11,14 @@ class _detailpageState extends State<detailpage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pushNamed(context, 'home');
+          },
+          icon: Icon(Icons.arrow_back_ios),
+        ),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -39,7 +47,7 @@ class _detailpageState extends State<detailpage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -52,7 +60,7 @@ class _detailpageState extends State<detailpage> {
                         ),
                       ),
                       Container(
-                        height: 60,
+                        height: 55,
                         width: 100,
                         child: const Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -69,7 +77,7 @@ class _detailpageState extends State<detailpage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 15,
                   ),
                   const Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -77,7 +85,7 @@ class _detailpageState extends State<detailpage> {
                       Text(
                         "Stock",
                         style: TextStyle(
-                          fontSize: 25,
+                          fontSize: 20,
                         ),
                       ),
                       Text(
@@ -87,7 +95,7 @@ class _detailpageState extends State<detailpage> {
                     ],
                   ),
                   const SizedBox(
-                    height: 20,
+                    height: 18,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,

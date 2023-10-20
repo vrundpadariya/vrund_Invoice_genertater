@@ -9,39 +9,74 @@ class homescreen extends StatefulWidget {
 }
 
 class _homescreenState extends State<homescreen> {
+  int _currentIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        toolbarHeight: 60,
+        toolbarHeight: 50,
       ),
-      drawer: Drawer(),
       body: Column(
         children: [
-          const SizedBox(
-            height: 10,
-          ),
           Container(
-            height: 80,
-            width: 200,
+            padding: EdgeInsets.all(10),
+            height: 100,
+            width: 150,
             child: const Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Our",
+                  "   Our",
                   style: TextStyle(
                     fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
                 Text(
-                  "Product",
+                  "product",
                   style: TextStyle(
                     fontSize: 25,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
+          ),
+          Row(
+            children: [
+              Container(
+                height: 90,
+                width: 350,
+                child: Row(
+                  children: [
+                    Container(
+                      height: 60,
+                      width: 250,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Colors.grey.withOpacity(0.9),
+                      ),
+                      child: const Row(
+                        children: [
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Icon(
+                            Icons.search,
+                          ),
+                          Text("Search")
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Container(
+                child: Icon(Icons.tune_rounded),
+              ),
+            ],
           )
         ],
       ),
@@ -54,21 +89,39 @@ class _homescreenState extends State<homescreen> {
         borderRadius: Radius.circular(20.0),
         items: [
           CustomNavigationBarItem(
+            badgeCount: 5,
+            title: Text("Home"),
             icon: const Icon(
               Icons.home,
             ),
           ),
           CustomNavigationBarItem(
+            title: Text("Cart"),
             icon: const Icon(
               Icons.shopping_cart,
             ),
           ),
           CustomNavigationBarItem(
+            title: Text("Personal Detail"),
             icon: const Icon(
               Icons.person,
             ),
           ),
         ],
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(
+            () {
+              _currentIndex = index;
+              if (_currentIndex == 1) {
+                Navigator.pushNamed(context, 'cart');
+              } else if (_currentIndex == 2) {
+                Navigator.pushNamed(context, 'fav');
+              }
+            },
+          );
+        },
+        isFloating: true,
       ),
     );
   }
