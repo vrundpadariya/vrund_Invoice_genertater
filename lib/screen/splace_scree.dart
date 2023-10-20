@@ -13,7 +13,7 @@ class _splash_pageState extends State<splash_page> {
   @override
   Widget build(BuildContext context) {
     Timer(const Duration(seconds: 5), () {
-      Navigator.pushReplacementNamed(context, 'detail');
+      Navigator.pushReplacementNamed(context, 'home');
     });
     return Scaffold(
       body: Center(
