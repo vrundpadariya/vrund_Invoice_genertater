@@ -1,110 +1,6 @@
 class Global {
   static List<Map<String, dynamic>> allProducts = [
     {
-      'categoryName': 'perfumes',
-      'categoryProducts': [
-        {
-          'id': 1,
-          'name': 'Dusk',
-          'price': 500,
-          'brand': 'Blanko',
-          'stock': 131,
-          'ratting': 5,
-          'discount': 10,
-          'caname': 'perfumes',
-          'thumbnail':
-              "https://d3vk3ilzkajryp.cloudfront.net/blanko-webp/dusk-sale.webp",
-          'discription':
-              'crisp, long-lasting and has an amazing strength to it',
-          'image': [
-            'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcTAdDeGWPMwXBxmHsPDvWoajcxWbHR0dGPdRutbNk7XOLrf8TBrfG7lOHzOFMPToRhCZ__9KD5FdwYnUbZCfnQMAni_H7I-',
-            'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcRf8eyo4chgnMyn1SOi5TA1Fok8c6fpGG1Tzypn1O54H_YD_bT1auH8kyermm39YtlcJnRJw9wqm63oQWcltaStXvPnC7G_rQ',
-            'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcT1F7r6haBiF94bQuBEEbNj8iXz9zqEPiL0mK1FWUU1-v_01X40ligyvVVMiwyLXAExg9N-P76uU98TbZ8A8sk8hVcBvMO2',
-          ],
-        },
-        {
-          'id': 2,
-          'name': 'Indian Oud ',
-          'price': 999,
-          'brand': 'AdilQadri',
-          'stock': 100,
-          'ratting': 4,
-          'caname': 'perfumes',
-          'discount': 10,
-          'thumbnail':
-              "https://www.adilqadri.com/cdn/shop/files/aaShanaya12ml.2_800x.jpg?v=1694615120",
-          'discription':
-              'Attar Is Highly Long Lasting Which Is A Vital Feature To Keep You On The Go',
-          'image': [
-            'https://www.adilqadri.com/cdn/shop/files/aaShanaya12ml.2_800x.jpg?v=1694615120',
-            'https://www.adilqadri.com/cdn/shop/products/shanayanewwwaaa_800x.jpg?v=1694615120',
-            'https://www.adilqadri.com/cdn/shop/products/Shanaya12ml.3_800x.jpg?v=1694615120',
-            'https://www.adilqadri.com/cdn/shop/products/Shanaya12ml.4_800x.jpg?v=1694615120',
-          ],
-        },
-        {
-          'id': 3,
-          'name': ' Dawn',
-          'price': 500,
-          'ratting': 3,
-          'caname': 'perfumes',
-          'brand': 'Blanko',
-          'stock': 89,
-          'discount': 17,
-          'thumbnail':
-              "https://d3vk3ilzkajryp.cloudfront.net/blanko-webp/dawn-sale.webp",
-          'discription':
-              'a refreshing blend of Bergamot, Verbena, Caraway, Pink Pepper, and Violet Flower',
-          'image': [
-            'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS0gKZGqeoUvbhmzO-extxRhGBEvX40BWIqm3lvI4NCNL_9uq-gCnIS7XyJ6ps8HmC7XTn6ZwqqkSbpwAr03fBw0NIoJyAV_g',
-            'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQcVJ9zjkzc9q8LUWfsl17JpvFVbRfjZXZPSLXI0ctSNDcdaC16ZkZg7V90RdbDq-i2YzjYyoBKOJ8YqeBISNhKGTV0d3Fq',
-            'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTknZ1umvN7y9nJeejmxCffwmVHGlNX73Oq1p2qzDkbz2byFIDS2u3vZAkkuZIr4_wyhVbjvWe-kCvhExICd2MH3inpYxLO',
-          ],
-        },
-        {
-          'id': 4,
-          'name': 'Ceo Man ',
-          'caname': 'perfumes',
-          'price': 200,
-          'brand': 'Bella Vita',
-          'stock': 89,
-          'ratting': 4.5,
-          'discount': 14,
-          'thumbnail':
-              "https://bellavitaorganic.com/cdn/shop/files/CEOMAN_bfea0c4f-3be9-4f47-a64b-a661a8845dbb_765x.jpg?v=1693296067",
-          'discription':
-              'Refreshingly daring yet long-lasting with top hints of lemon and sugar delicately energising with Lavendar at its heart and finally',
-          'image': [
-            'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcScr8CfhVJ5JhbdxG-9J6-18jgPWKCHED2smiIUv-1fSNJUifvzhHqJ-jC_Y5fjG2phh8u2krTmUXJqjvxLrf1g41StCZtYmYwa-PnwDG4GdhX8x-LWsw',
-            'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcRINLtG9Bz6tez-OEKYogf-ZFde3xEGOFlkLShNLwJ0WgAQvyEzhw00GJBsFmWNHv8B0Z6SkwsGedPctwEexdb5B4ajV3ByeV5TASJJ',
-            'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQ9T39iwqirHCUks_Jr8mwmRmNnsCJRsjK-lUNTr6y7f4HlzOGqJW5t0MQrlA-OZ0EjGqsB2mEAQ7tDTde8Z6LnObZWBC8v9omggdTJ2Il_26IEtL_a7g',
-            'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcQZuEmMDePsHqVPN4Z8VYr7CgnyQMfUZWpd_bKYgIE5ed_CS5UnwuGG3w3dR2ZVgAot1vwkQ3RqotyRVqScqqQ6uxh60_UUzuvfDDq0',
-            'https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcQULcn2l_LGwcGw6iRy0mnn3Y_oHSQGIIbiOxmGcjLqtBEhtrzy7XiYqjteWOkk_zLy6FHPmT7fxoIpZJCAEvUcFc4f__JsOw',
-          ],
-        },
-        {
-          'id': 5,
-          'name': 'Alpha Eau De',
-          'price': 1200,
-          'caname': 'perfumes',
-          'brand': 'Pilgrim',
-          'stock': 50,
-          'ratting': 5.0,
-          'discount': 12,
-          'thumbnail':
-              "https://discoverpilgrim.com/cdn/shop/files/AlphaListingImages_1080x1080_new1.1.jpg?v=1689326870&width=800",
-          'discription':
-              'Refreshingly daring yet long-lasting with top hints of lemon and sugar delicately energising with Lavendar at its heart and finally',
-          'image': [
-            'https://m.media-amazon.com/images/I/51vU1B-6lWL._SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/7182cWis-UL._SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/61zxVOoUygL._SL1500_.jpg',
-            'https://m.media-amazon.com/images/I/61oL4XUh3ZL._SL1500_.jpg',
-          ],
-        },
-      ],
-    },
-    {
       'categoryName': 'watchs',
       'categoryProducts': [
         {
@@ -114,6 +10,7 @@ class Global {
           'caname': 'Watchs',
           'ratting': 4.5,
           'brand': 'Timex',
+          'treading': 'topseller',
           'stock': 80,
           'discount': 13,
           'thumbnail':
@@ -130,6 +27,7 @@ class Global {
           'name': 'Aspire Quartz',
           'price': 1500,
           'ratting': 3.89,
+          'treading': 'Best seller ',
           'caname': 'Watchs',
           'discount': 12,
           'brand': 'titan',
@@ -149,6 +47,7 @@ class Global {
           'name': 'Workwear Watch',
           'price': 2000,
           'caname': 'Watchs',
+          'treading': 'Fan favourite',
           'ratting': 5,
           'brand': 'Titan',
           'stock': 54,
@@ -171,6 +70,7 @@ class Global {
           'name': 'Fenmore',
           'price': 7200,
           'brand': 'Fossil ',
+          'treading': 'Good seller',
           'stock': 74,
           'ratting': 5.1,
           'caname': 'Watchs',
@@ -191,6 +91,7 @@ class Global {
           'brand': 'NEWNEST',
           'stock': 40,
           'ratting': 4.5,
+          'treading': 'Topseller',
           'discount': 8,
           'caname': 'Watchs',
           'thumbnail':
@@ -212,6 +113,7 @@ class Global {
           'id': 1,
           'name': 'THE GODFATHER',
           'price': 1350,
+          'treading': 'Treading',
           'brand': 'urbanmonkey',
           'stock': 39,
           'caname': 'Glasses',
@@ -234,6 +136,7 @@ class Global {
           'name': 'COMMANDO V1 ',
           'price': 1500,
           'caname': 'Glasses',
+          'treading': 'Best  product',
           'ratting': 4.1,
           'discount': 10,
           'brand': 'sunglassic',
@@ -254,6 +157,7 @@ class Global {
           'id': 3,
           'name': 'GOLD DIGGER',
           'price': 1000,
+          'treading': 'Good seller ',
           'caname': 'Glasses',
           'brand': 'urbanmonkey',
           'stock': 14,
@@ -274,6 +178,7 @@ class Global {
           'name': 'CLASSIC WAYFARER',
           'price': 1850,
           'ratting': 4.5,
+          'treading': 'selling ',
           'caname': 'Glasses',
           'discount': 15,
           'brand': 'urbanmonkey',
@@ -294,7 +199,8 @@ class Global {
           'price': 1650,
           'ratting': 4.5,
           'discount': 16,
-          'brand': 'urbanmonkey',
+          'treading': 'Top-seller',
+          'brand': 'urban monkey',
           'stock': 44,
           'caname': 'Glasses',
           'thumbnail':
@@ -623,4 +529,39 @@ class Global {
       ],
     },
   ];
+  static List<Map<String, dynamic>> cartProduct = [];
+  static List<Map<String, dynamic>> cartlist = [];
+  List<Map<String, dynamic>> favList = [];
+
+  bool isHome = true;
+  bool isFav = false;
+  bool isBag = false;
+  bool isProfile = false;
+
+  static double amu = 00;
+  List<double> allAmount = [];
+  static double totalAmount = 00;
+  static getAmount() {
+    cartlist.forEach((e) {
+      amu = e['price'] + (e['price'] * (12 / 100));
+      totalAmount = amu + totalAmount;
+    });
+    if (cartlist.isEmpty) {
+      totalAmount = 0;
+      amu = 0;
+    }
+  }
+
+  static buyProductPrice() {
+    double sum = 0;
+    cartProduct.forEach((e) {
+      sum = sum + e['price'];
+    });
+    return sum;
+  }
+
+  static lengthCart() {
+    num cartLength = cartProduct.length;
+    return cartLength;
+  }
 }

@@ -1,12 +1,18 @@
 import 'package:custom_navigation_bar/custom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 
+import '../uitiles/Globals.dart';
+
 class homescreen extends StatefulWidget {
   const homescreen({super.key});
 
   @override
   State<homescreen> createState() => _homescreenState();
 }
+
+int? dropdownvalue;
+int start = 0;
+int end = 70000;
 
 class _homescreenState extends State<homescreen> {
   int _currentIndex = 0;
@@ -18,78 +24,443 @@ class _homescreenState extends State<homescreen> {
         centerTitle: true,
         toolbarHeight: 50,
       ),
-      body: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(10),
-            height: 100,
-            width: 150,
-            child: const Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        padding: const EdgeInsets.all(20),
+        alignment: Alignment.center,
+        child: Column(
+          children: [
+            Row(
               children: [
-                Text(
-                  "   Our",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
+                DropdownButton(
+                  value: dropdownvalue,
+                  hint: Text("Select catagory..."),
+                  items: Global.allProducts.map((e) {
+                    return DropdownMenuItem(
+                        value: Global.allProducts.indexOf(e),
+                        child: Text("${e['categoryName']}"));
+                  }).toList(),
+                  onChanged: (val) {
+                    setState(() {
+                      dropdownvalue = val!;
+                    });
+                  },
                 ),
-                Text(
-                  "product",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                Visibility(
+                  visible: (dropdownvalue != null) ? true : false,
+                  child: ActionChip(
+                    elevation: 0,
+                    label: const Row(
+                      children: [
+                        Icon(
+                          Icons.clear,
+                          size: 15,
+                        ),
+                        Text("clear"),
+                      ],
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        dropdownvalue = null;
+                      });
+                    },
                   ),
                 ),
               ],
             ),
-          ),
-          Row(
-            children: [
-              Container(
-                height: 90,
-                width: 350,
+            Container(
+              child: Visibility(
+                visible: (dropdownvalue != null) ? true : false,
                 child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Container(
-                      height: 60,
-                      width: 250,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.grey.withOpacity(0.9),
-                      ),
-                      child: const Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                    Expanded(
+                      flex: 2,
+                      child: Column(
                         children: [
-                          SizedBox(
-                            height: 10,
+                          const Text('From'),
+                          Text(
+                            "RS.$start",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Icon(
-                            Icons.search,
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      flex: 5,
+                      child: RangeSlider(
+                        values: RangeValues(start.toDouble(), end.toDouble()),
+                        min: 0,
+                        max: 70000,
+                        onChanged: (val) {
+                          setState(() {
+                            start = val.start.toInt();
+                            end = val.end.toInt();
+                          });
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: Column(
+                        children: [
+                          const Text('To'),
+                          Text(
+                            "RS.$end",
+                            style: const TextStyle(fontWeight: FontWeight.bold),
                           ),
-                          Text("Search")
                         ],
                       ),
                     ),
                   ],
                 ),
               ),
-              Container(
-                child: Icon(Icons.tune_rounded),
+            ),
+            Expanded(
+              flex: 9,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: Global.allProducts.map((e) {
+                    List data = e['categoryProducts'];
+                    return (dropdownvalue == null)
+                        ? Container(
+                            alignment: Alignment.centerLeft,
+                            height: 450,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${e['categoryName']}",
+                                  style: const TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 25,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      ...e['categoryProducts'].map((e) {
+                                        return GestureDetector(
+                                          onTap: () {
+                                            Navigator.of(context).pushNamed(
+                                                'details',
+                                                arguments: e);
+                                          },
+                                          child: Container(
+                                            height: 370,
+                                            width: 230,
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              border: Border.all(
+                                                width: 1,
+                                                color: Colors.grey,
+                                              ),
+                                              boxShadow: const <BoxShadow>[
+                                                BoxShadow(
+                                                  color: Colors.grey,
+                                                  offset: Offset(0, 2),
+                                                ),
+                                              ],
+                                            ),
+                                            margin: EdgeInsets.only(
+                                                right: 25, bottom: 25),
+                                            child: Column(
+                                              children: [
+                                                Expanded(
+                                                  flex: 2,
+                                                  child: Container(
+                                                    decoration: BoxDecoration(
+                                                      image: DecorationImage(
+                                                        fit: BoxFit.cover,
+                                                        image: NetworkImage(
+                                                          "${e['thumbnail']}",
+                                                        ),
+                                                      ),
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          const BorderRadius
+                                                              .vertical(
+                                                        top:
+                                                            Radius.circular(20),
+                                                      ),
+                                                    ),
+                                                    alignment:
+                                                        Alignment.topLeft,
+                                                    child: Container(
+                                                      height: 30,
+                                                      width: 60,
+                                                      decoration:
+                                                          const BoxDecoration(
+                                                        color: Colors.red,
+                                                        borderRadius:
+                                                            BorderRadius.only(
+                                                          topLeft:
+                                                              Radius.circular(
+                                                                  20),
+                                                          bottomRight:
+                                                              Radius.circular(
+                                                                  15),
+                                                        ),
+                                                      ),
+                                                      alignment:
+                                                          Alignment.center,
+                                                      child: Text(
+                                                        "${e['discount']} %",
+                                                        style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                                Expanded(
+                                                  flex: 1,
+                                                  child: Container(
+                                                    padding: EdgeInsets.all(10),
+                                                    alignment:
+                                                        Alignment.centerLeft,
+                                                    child: Column(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text(
+                                                          "${e['name']}",
+                                                          style: TextStyle(
+                                                            fontSize: 18,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "${e['treading']}",
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                            color: Colors
+                                                                .orangeAccent,
+                                                          ),
+                                                        ),
+                                                        Text(
+                                                          "Rs.${e['price']}",
+                                                          style: TextStyle(
+                                                            fontSize: 22,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        );
+                                      }).toList(),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          )
+                        : (dropdownvalue == Global.allProducts.indexOf(e))
+                            ? Container(
+                                alignment: Alignment.centerLeft,
+                                height: 450,
+                                child: Column(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "${e['categoryName']}",
+                                      style: const TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 25,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          ...e['categoryProducts'].map((e) {
+                                            return (e['price'] >= start &&
+                                                    e['price'] <= end)
+                                                ? GestureDetector(
+                                                    onTap: () {
+                                                      Navigator.of(context)
+                                                          .pushNamed('details',
+                                                              arguments: e);
+                                                    },
+                                                    child: Container(
+                                                      height: 370,
+                                                      width: 230,
+                                                      decoration: BoxDecoration(
+                                                        color: Colors.white,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(20),
+                                                        border: Border.all(
+                                                          width: 1,
+                                                          color: Colors.grey,
+                                                        ),
+                                                        boxShadow: const <BoxShadow>[
+                                                          BoxShadow(
+                                                            color: Colors.grey,
+                                                            offset:
+                                                                Offset(0, 2),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      margin: EdgeInsets.only(
+                                                          right: 25,
+                                                          bottom: 25),
+                                                      child: Column(
+                                                        children: [
+                                                          Expanded(
+                                                            flex: 2,
+                                                            child: Container(
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                image:
+                                                                    DecorationImage(
+                                                                  fit: BoxFit
+                                                                      .cover,
+                                                                  image:
+                                                                      NetworkImage(
+                                                                    "${e['thumbnail']}",
+                                                                  ),
+                                                                ),
+                                                                color: Colors
+                                                                    .white,
+                                                                borderRadius:
+                                                                    const BorderRadius
+                                                                        .vertical(
+                                                                  top: Radius
+                                                                      .circular(
+                                                                          20),
+                                                                ),
+                                                              ),
+                                                              alignment:
+                                                                  Alignment
+                                                                      .topLeft,
+                                                              child: Container(
+                                                                height: 30,
+                                                                width: 60,
+                                                                decoration:
+                                                                    const BoxDecoration(
+                                                                  color: Colors
+                                                                      .red,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .only(
+                                                                    topLeft: Radius
+                                                                        .circular(
+                                                                            20),
+                                                                    bottomRight:
+                                                                        Radius.circular(
+                                                                            15),
+                                                                  ),
+                                                                ),
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                child: Text(
+                                                                  "${e['discount']} %",
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    color: Colors
+                                                                        .white,
+                                                                    fontSize:
+                                                                        20,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .bold,
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          Expanded(
+                                                            flex: 1,
+                                                            child: Container(
+                                                              padding:
+                                                                  EdgeInsets
+                                                                      .all(10),
+                                                              alignment: Alignment
+                                                                  .centerLeft,
+                                                              child: Column(
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceBetween,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                children: [
+                                                                  Text(
+                                                                    "${e['name']}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          18,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .bold,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    "${e['treading']}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          15,
+                                                                      color: Colors
+                                                                          .orangeAccent,
+                                                                    ),
+                                                                  ),
+                                                                  Text(
+                                                                    "Rs.${e['price']}",
+                                                                    style:
+                                                                        TextStyle(
+                                                                      fontSize:
+                                                                          22,
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  )
+                                                : Container();
+                                          }).toList(),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Container();
+                  }).toList(),
+                ),
               ),
-            ],
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Container(
-                  height: 320,
-                  width: 180,
-                  color: Colors.red,
-                  child: Container()),
-            ],
-          ),
-        ],
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: CustomNavigationBar(
         iconSize: 30.0,
@@ -137,7 +508,7 @@ class _homescreenState extends State<homescreen> {
     );
   }
 }
-//Container(
+// Container(
 //                 height: 320,
 //                 width: 180,
 //                 color: Colors.red,

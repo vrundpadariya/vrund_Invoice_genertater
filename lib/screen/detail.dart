@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../uitiles/Globals.dart';
 
 class detailpage extends StatefulWidget {
   const detailpage({super.key});
@@ -10,11 +11,13 @@ class detailpage extends StatefulWidget {
 class _detailpageState extends State<detailpage> {
   @override
   Widget build(BuildContext context) {
+    Map<String, dynamic> data =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
-            Navigator.pushNamed(context, 'home');
+            Navigator.of(context).pop();
           },
           icon: Icon(Icons.arrow_back_ios),
         ),
@@ -23,7 +26,26 @@ class _detailpageState extends State<detailpage> {
         children: [
           Expanded(
             flex: 1,
-            child: Container(),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Container(
+                child: Row(
+                  children: [
+                    ...data['image']
+                        .map(
+                          (e) => SizedBox(
+                            height: 350,
+                            child: Image.network(
+                              '$e',
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        )
+                        .toList(),
+                  ],
+                ),
+              ),
+            ),
           ),
           Expanded(
             flex: 1,
@@ -52,8 +74,8 @@ class _detailpageState extends State<detailpage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      const Text(
-                        "Dusk",
+                      Text(
+                        "${data['name']}",
                         style: TextStyle(
                           fontSize: 25,
                           fontWeight: FontWeight.bold,
@@ -62,15 +84,30 @@ class _detailpageState extends State<detailpage> {
                       Container(
                         height: 55,
                         width: 100,
-                        child: const Column(
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             Text(
-                              "Rs.500",
+                              "Rs.${data['price']}",
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
                             ),
-                            Text("rat 4.45"),
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.star,
+                                  color: Colors.amber,
+                                  size: 17,
+                                ),
+                                Text(
+                                  "${data['ratting']}",
+                                  style: TextStyle(
+                                    fontSize: 17,
+                                    color: Colors.grey.shade700,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ],
                         ),
                       ),
@@ -79,17 +116,17 @@ class _detailpageState extends State<detailpage> {
                   const SizedBox(
                     height: 15,
                   ),
-                  const Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "Stock",
+                      const Text(
+                        "stock",
                         style: TextStyle(
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        "131",
+                        "${data['stock']}",
                         style: TextStyle(fontSize: 18),
                       ),
                     ],
@@ -104,17 +141,17 @@ class _detailpageState extends State<detailpage> {
                         padding: EdgeInsets.all(10),
                         height: 150,
                         width: 300,
-                        child: const Column(
+                        child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               "discription",
                               style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                               ),
                             ),
                             Text(
-                              "Refreshingly daring yet long-lasting with top hints of lemon and sugar delicately energising with Lavendar at its heart and finally",
+                              "${data['discription']}",
                               style: TextStyle(
                                 fontSize: 15,
                               ),
@@ -124,19 +161,25 @@ class _detailpageState extends State<detailpage> {
                       ),
                     ],
                   ),
-                  ElevatedButton(
-                    onPressed: () {},
-                    child: Container(
-                      alignment: Alignment.center,
-                      width: 150,
-                      height: 70,
-                      child: const Text(
-                        "Buy Now",
-                        style: TextStyle(
-                          fontSize: 20,
+                  Row(
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {
+                          Global.cartProduct.add(data);
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                          width: 150,
+                          height: 50,
+                          child: const Text(
+                            "Buy Now",
+                            style: TextStyle(
+                              fontSize: 15,
+                            ),
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
