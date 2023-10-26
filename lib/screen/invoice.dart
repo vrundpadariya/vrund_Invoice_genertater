@@ -359,7 +359,7 @@ class _invoiceState extends State<invoice> {
                   pw.SizedBox(
                     height: 65,
                   ),
-                  pw.Text("KRIYONA PVT LTD ALL COPYRIGHTS RECEIVED©",
+                  pw.Text(" SKY TOUCH PVT LTD ALL COPYRIGHTS RECEIVED©",
                       style: pw.TextStyle(
                         color: PdfColors.grey,
                         fontSize: 12,
